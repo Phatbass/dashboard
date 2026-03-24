@@ -1,4 +1,5 @@
-import Dashboard from './Dashboard.vue'
-import DashboardItem from './DashboardItem.vue'
+import Dashboard from './Dashboard.vue';
+import DashboardColumn from './DashboardColumn.vue';
+import DashboardItem from './DashboardItem.vue';
 
-export { Dashboard, DashboardItem }
+export { Dashboard, DashboardColumn, DashboardItem };

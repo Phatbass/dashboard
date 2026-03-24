@@ -1,0 +1,268 @@
+@import '../../node_modules/bulma/css/bulma.css';
+
+:root {
+    --dashboard-radius: var(--bulma-radius-medium);
+    --dashboard-radius-sm: var(--bulma-radius-small);
+    --dashboard-radius-lg: var(--bulma-radius-large);
+    --dashboard-bg: var(--bulma-scheme-main);
+    --dashboard-border: var(--bulma-border);
+    --dashboard-input: var(--bulma-scheme-main-ter);
+    --dashboard-ring: var(--bulma-border);
+    --dashboard-foreground: var(--bulma-text);
+    --dashboard-primary: var(--bulma-primary);
+    --dashboard-primary-foreground: var(--bulma-primary-invert);
+    --dashboard-secondary: var(--bulma-scheme-main-ter);
+    --dashboard-secondary-foreground: var(--bulma-text);
+    --dashboard-accent: var(--bulma-scheme-main-bis);
+    --dashboard-accent-foreground: var(--bulma-text);
+    --dashboard-destructive: var(--bulma-danger);
+    --dashboard-destructive-foreground: var(--bulma-danger-invert);
+    --dashboard-card: var(--bulma-scheme-main);
+    --dashboard-card-foreground: var(--bulma-text);
+    --dashboard-muted: var(--bulma-background);
+    --dashboard-muted-foreground: var(--bulma-text-weak);
+}
+
+.app-main {
+    margin-top: 30px;
+}
+
+.dashboard-loader.columns .column .skeleton-block {
+    height: 80vh;
+}
+
+.dashboard {
+    display: flex;
+    gap: 1rem;
+    margin: 0;
+    padding: 1rem;
+    list-style: none;
+    overflow-x: auto;
+    min-height: 500px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: var(--dashboard-foreground);
+    background-color: var(--dashboard-bg);
+    scrollbar-width: thin;
+    scrollbar-color: var(--dashboard-muted-foreground) transparent;
+}
+
+.dashboard::-webkit-scrollbar {
+    height: 6px;
+    width: 6px;
+}
+
+.dashboard::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.dashboard::-webkit-scrollbar-thumb {
+    background-color: var(--dashboard-muted-foreground);
+    border-radius: 9999px;
+}
+
+.dashboard-column {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border: 1px solid var(--dashboard-border);
+    border-radius: var(--dashboard-radius);
+    padding: 0.75rem;
+    min-width: 320px;
+    width: 320px;
+    background-color: var(--dashboard-secondary);
+    transition: box-shadow 0.2s ease, transform 0.15s ease, opacity 0.15s ease;
+}
+
+.dashboard-column:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.dashboard-column-dragging {
+    opacity: 0.8;
+    transform: rotate(1deg) scale(1.02);
+    z-index: 10;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.dashboard-column-overed {
+    background-color: var(--dashboard-accent);
+    box-shadow: 0 0 0 1px var(--dashboard-border);
+}
+
+.dashboard ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dashboard-column-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.25rem 0;
+    margin: 0;
+    list-style: none;
+    flex: 1;
+    overflow-y: auto;
+    height: 100%;
+    transition: background-color 0.15s ease;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: var(--dashboard-muted-foreground) transparent;
+}
+
+.dashboard-column-body::-webkit-scrollbar {
+    width: 4px;
+}
+
+.dashboard-column-body::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.dashboard-column-body::-webkit-scrollbar-thumb {
+    background-color: var(--dashboard-muted-foreground);
+    border-radius: 9999px;
+}
+
+.dashboard-column-body-overed {
+    background-color: var(--dashboard-accent);
+}
+
+.dashboard-column-overed .dashboard-column-body {
+    background-color: var(--dashboard-accent);
+}
+
+.dashboard-drag-handle {
+    cursor: grab;
+    color: var(--dashboard-muted-foreground);
+    width: 16px;
+    height: 16px;
+    transition: color 0.15s ease;
+    opacity: 0.6;
+}
+
+.dashboard-drag-handle:hover {
+    color: var(--dashboard-primary);
+    opacity: 1;
+}
+
+.dashboard-column-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--dashboard-border);
+    margin-bottom: 0.5rem;
+}
+
+.dashboard-column-footer {
+    margin-top: auto;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--dashboard-border);
+    font-size: 0.8125rem;
+    color: var(--dashboard-muted-foreground);
+}
+
+.dashboard-item {
+    padding: 0.6rem;
+    border: 1px solid var(--dashboard-border);
+    border-radius: var(--dashboard-radius-sm);
+    list-style: none;
+    background-color: var(--dashboard-card);
+    cursor: grab;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease,
+    border-color 0.15s ease;
+    position: relative;
+    font-size: 0.8125rem;
+    letter-spacing: -0.011em;
+    line-height: 1.5;
+    color: var(--dashboard-card-foreground);
+}
+
+.dashboard-item:hover {
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    transform: translateY(-1px);
+    border-color: var(--dashboard-border);
+}
+
+.dashboard-item .dashboard-drag-handle {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+}
+
+.dashboard-item .button {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+}
+
+.dashboard-item__content {
+    margin-left: 1.5rem;
+}
+
+.dashboard-item-dragging {
+    opacity: 0.8;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transform: rotate(0.5deg) scale(1.01);
+    z-index: 20;
+    background-color: var(--dashboard-card);
+    border-color: var(--dashboard-ring);
+}
+
+/* Item title and content styling */
+.dashboard-item-title {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+    color: var(--dashboard-primary);
+}
+
+.dashboard-item-content {
+    font-size: 0.8125rem;
+    color: var(--dashboard-muted-foreground);
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+}
+
+.dashboard-item-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    margin-top: 0.5rem;
+}
+
+.dashboard-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.15rem 0.5rem;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    border-radius: 9999px;
+    background-color: var(--dashboard-secondary);
+    color: var(--dashboard-secondary-foreground);
+    margin-right: 0.25rem;
+    letter-spacing: -0.01em;
+}
+
+.dashboard-badge-work {
+    background-color: var(--bulma-info);
+    color: var(--bulma-info-invert);
+}
+
+.dashboard-badge-important {
+    background-color: var(--bulma-danger);
+    color: var(--bulma-danger-invert);
+}
+
+.dashboard-badge-personal {
+    background-color: var(--bulma-success);
+    color: var(--bulma-success-invert);
+}
+
+.dashboard-badge-meeting {
+    background-color: var(--bulma-primary);
+    color: var(--bulma-primary-invert);
+}
