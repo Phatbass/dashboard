@@ -11,9 +11,9 @@ import { useUserStore } from '@/stores/userStore'
 const pinia = createPinia()
 const app = createApp(App)
 
+app.use(pinia)
 app.use(VueDnDKitPlugin)
 app.use(router)
-app.use(pinia)
 
 function initializeStores(): Promise<void> {
   useUserStore().loadFromStorage()
